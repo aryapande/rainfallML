@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Rainy</title>
+    <style>
+        #grad1{
+            margin: 0;
+            padding: 0;
+          height: 150px;
+          background-color: blue; /* For browsers that do not support gradients */
+          background-image: linear-gradient(-60deg, cyan , lightgreen); /* Standard syntax (must be last) */
+        }
+        #cont{
+            margin:20px;
+            padding:15px;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <div id="grad1">
+        <h1 style="color: white;padding:20px;top:25px;font-size: 40px;position: absolute;">Rainfall Predictor</h1>
+    </div>
+    <div id="cont">
+        <p>Enter year and select State to predict the estimated rainfall in (mm)</p>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <div style="background-color:#ff4d70;opacity:0.6;border-radius:3px;width:25%;"><p class="{{ category }}" style="color:white;padding:10px;text-align:center;">{{ message }}</p></div>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <div id="cont">
+        <form method="POST" action="{{url_for('predict')}}">
+            {{form.hidden_tag()}}
+            <div>
+                {{form.year.label}}
+                {{form.year()}}
+                <br>
+                <br>
+                {{form.state.label}}
+                {{form.state()}}
+            </div>
+            <br>
+            <div>
+                {{form.submit()}}
+            </div>
+            {% if form.errors %}
+{{ form.errors }}
+{% endif %}
+        </form>
+        <br>
+        <br>
+        <h3>Disclaimer</h3><br>
+        <ul class="list-group">
+            <li class="list-group-item">This application has been made using Flask</li>
+            <li class="list-group-item">The dataset is from <a href="https://www.kaggle.com/rajanand/rainfall-in-india?select=rainfall+in+india+1901-2015.csv">kaggle</a></li>
+            <li class="list-group-item">The lack of some States is due to insufficient data</li>
+            <li class="list-group-item">If the results show <b>nan</b>, the model was unable to predict and most probaly experienced vanishing gradients.
+                This is mostly due to extremes in the dataset</li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <p style="text-align:center;color:black;">Made by Aryaman Pande<br><a href="http://aryaman.flads.in/">aryaman.flads.in</a><br><br><a href="https://github.com/aryapande">
+    <img src="static/GitHub-Mark-32px.png"></a>
+</p>
+</body>
+</html>

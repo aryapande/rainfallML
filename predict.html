@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body style="background-color:#2B2B2B;">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <div class=".container-fluid" style="padding:20px;">
+        <h2 style="color:white;">Predicted Rainfall in <b>{{state}}</b> for the year: {{year}}</h2><br>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th style="font-size: 20px;">Month</th>
+        <th style="font-size: 20px;">Predicted rainfall in mm</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for m in months %}
+      <tr>
+        <td style="font-size: 18px;">{{m}}</td>
+        <td style="font-size: 18px;">{{ls[loop.index0]}}</td>
+      </tr>
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+<br>
+<p style="text-align:center;color:white;">Made by Aryaman Pande<br><a href="http://aryaman.flads.in/">aryaman.flads.in</a><br><br><a href="https://github.com/aryapande">
+    <img src="static/GitHub-Mark-Light-32px.png"></a>
+</p>
+</body>
+</html>
